@@ -1,4 +1,5 @@
 const fs = require("fs");
+const prisma = require("../db")
 const {
     insertProduct,
     deleteProduct,
@@ -9,7 +10,12 @@ const {
 
 // createproduk
 const createProduct = async(newProductData)=>{
-    
+    newProductData.image = `/uploads/${newProductData.image}`;
+
     const product  = await insertProduct(newProductData);
-    
+    return product;
 }
+
+module.exports={
+    createProduct
+};

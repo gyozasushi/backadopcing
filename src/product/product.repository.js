@@ -8,12 +8,12 @@ const fs = require("fs");
 const insertProduct = async (productData)=>{
     const product = await prisma.product.create({
         data:{
-            name:productData.nama,
+            name:productData.name,
             description:productData.description,
-            price:productData.price,
+            price:parseFloat(productData.price),
             image: `/uploads/${productData.image}`,
             type : productData.type,
-            categoryId : productData.categoryId
+            categoryId : parseInt(productData.categoryId)
         }
     });
     return product;
